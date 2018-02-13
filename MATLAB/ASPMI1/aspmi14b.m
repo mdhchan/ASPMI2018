@@ -3,7 +3,7 @@
 % 10 s, 5 s, 1 s) to the EEG data
 
 % Load EEG data
-load EEG_data/EEG_Data_Assignment1.mat;
+load ../EEG_data/EEG_Data_Assignment1.mat;
 N = length(POz); % Length of data
 t = 0:1/fs:(N-1)/fs;
 f_hs = 0:fs/N:fs/2-fs/N; % half spectrum of frequency
