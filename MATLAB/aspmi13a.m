@@ -36,16 +36,6 @@ for i = 1:length(N)
     width_3dB(i) = 2*fn_half(idx_3dB); % Multiply half bandwidth by 2
 end
 
-% Find sidelobe power
-mag_w_pow_half = abs(mag_w(L/2+1:L,:)).^2;
-log_mag_w_pow_half = log(mag_w_pow_half);
-sidelobe_att = zeros(length(N),1);
-% Do this for all values of N except 4 - which has no sidelobes
-for i = 1:length(N)-1
-    temp = max(log_mag_w_pow_half(800:end,i+1)); % Find second maxima
-    sidelobe_att(i+1) = log_mag_w_pow_half(1+1)-temp;
-end
-
 % Plot relationship between -3dB width and N
 figure(1)
 subplot(2,1,1)
