@@ -25,6 +25,7 @@ f_hs = 0:1/(2*N):0.5-1/(2*N); % Find the half spectrum frequencies
 % Find the half-spectrum magnitudes
 mag_corr_x_wgn_bacf_hs = mag_corr_x_wgn_bacf(N:end,:);
 % Find logarithmic power
+% mag_corr_x_wgn_bacf_hs = mag_corr_x_wgn_bacf_hs + 10e-13; % Small offset
 mag_corr_x_wgn_bacf_hs_db = 10*log10(mag_corr_x_wgn_bacf_hs);
 % Plot correlogram magnitude spectrum of WGN
 figure(1)
@@ -37,6 +38,7 @@ title('PSD Estimates (Different Realisations and Mean')
 xlabel('Frequency/Hz')
 ylabel('Power/dB')
 legend(h2, 'Mean of Realisations')
+axis([-inf inf -20 20])
 
 subplot(2,1,2)
 plot(f_hs,std(mag_corr_x_wgn_bacf_hs_db,0,2),'r','LineWidth',1);
@@ -60,14 +62,14 @@ for i = 1:10
         + sin(2*pi*f_3*n).' + sin(2*pi*f_4*n).' + ...
         randn(N,1);
 end
-% Find Biased ACF of WGN noise for all realisations
+% Find Biased ACF of Sine Waves in Noise for all realisations
 x_sw_bacf = zeros(2*N-1,R);
 for i = 1:R
     x_sw_bacf(:,i) = xcorr(x_sw(:,i),'biased');
 end
 
 
-% Plot Correlogram of WGN
+% Plot Correlogram of Sine Waves in Noise
 % Find FFT of both ACFs
 fft_x_sw_bacf = fft(x_sw_bacf,[],1);
 % Find the magnitude of correlogram
@@ -76,20 +78,40 @@ f_hs = 0:1/(2*N):0.5-1/(2*N); % Find the half spectrum frequencies
 % Find the half-spectrum magnitudes
 mag_corr_x_sw_bacf_hs = mag_corr_x_sw_bacf(N:end,:);
 % Find logarithmic power
+% mag_corr_x_sw_bacf_hs = mag_corr_x_sw_bacf_hs + 10e-13; % Small offset
 mag_corr_x_sw_bacf_hs_db = 10*log10(mag_corr_x_sw_bacf_hs);
-% Plot correlogram magnitude spectrum of WGN
+% Plot correlogram magnitude spectrum of Sine Waves in Noise
 figure(2)
 subplot(2,1,1)
 hold on;
 h1 = plot(f_hs,mag_corr_x_sw_bacf_hs_db,'c','LineWidth',0.25);
 h2 = plot(f_hs,mean(mag_corr_x_sw_bacf_hs_db,2),'b','LineWidth',1);
-title('PSD Estimates (Different Realisations and Mean')
+title('PSD Estimates (Different Realisations and Mean)')
 xlabel('Frequency/Hz')
 ylabel('Power/dB')
 legend(h2, 'Mean of Realisations')
 
 subplot(2,1,2)
 plot(f_hs,std(mag_corr_x_sw_bacf_hs_db,0,2),'r','LineWidth',1);
+title('Standard Deviation of PSD Estimate)')
+xlabel('Frequency/Hz')
+ylabel('Standard Deviation')
+
+% Zoom to range 0.05-0.15
+figure(3)
+subplot(2,1,1)
+hold on;
+h1 = plot(f_hs,mag_corr_x_sw_bacf_hs_db,'c','LineWidth',0.25);
+h2 = plot(f_hs,mean(mag_corr_x_sw_bacf_hs_db,2),'b','LineWidth',1);
+title('PSD Estimates (Different Realisations and Mean)')
+xlabel('Frequency/Hz')
+ylabel('Power/dB')
+legend(h2, 'Mean of Realisations')
+axis([0.05 0.15 -inf inf])
+
+subplot(2,1,2)
+plot(f_hs,std(mag_corr_x_sw_bacf_hs_db,0,2),'r','LineWidth',1);
 title('Standard Deviation of PSD Estimate')
 xlabel('Frequency/Hz')
 ylabel('Standard Deviation')
+axis([0.05 0.15 -inf inf])

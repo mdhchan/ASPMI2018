@@ -24,7 +24,7 @@ end
 xf_10 = fft(x_10);
 xf_128 = fft(x_128);
 
-% Part 2.1b
+% Part 1.2b
 % Remove imaginary part of the spectrum
 xf_real_10 = real(xf_10);
 xf_real_128 = real(xf_128);

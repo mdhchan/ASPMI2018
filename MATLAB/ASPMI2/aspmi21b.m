@@ -84,7 +84,7 @@ subplot(2,1,1)
 hold on;
 h1 = plot(f_hs,mag_corr_x_sw_bacf_hs,'c','LineWidth',0.25);
 h2 = plot(f_hs,mean(mag_corr_x_sw_bacf_hs,2),'b','LineWidth',1);
-title('PSD Estimates (Different Realisations and Mean')
+title('PSD Estimates (Different Realisations and Mean)')
 xlabel('Frequency/Hz')
 ylabel('Power')
 legend(h2, 'Mean of Realisations')
@@ -94,3 +94,22 @@ plot(f_hs,std(mag_corr_x_sw_bacf_hs,0,2),'r','LineWidth',1);
 title('Standard Deviation of PSD Estimate')
 xlabel('Frequency/Hz')
 ylabel('Standard Deviation')
+
+% Zoom to range 0.05-0.15
+figure(3)
+subplot(2,1,1)
+hold on;
+h1 = plot(f_hs,mag_corr_x_sw_bacf_hs,'c','LineWidth',0.25);
+h2 = plot(f_hs,mean(mag_corr_x_sw_bacf_hs,2),'b','LineWidth',1);
+title('PSD Estimates (Different Realisations and Mean) Zoomed-In')
+xlabel('Frequency/Hz')
+ylabel('Power')
+legend(h2, 'Mean of Realisations')
+axis([0.05 0.15 -inf inf])
+
+subplot(2,1,2)
+plot(f_hs,std(mag_corr_x_sw_bacf_hs,0,2),'r','LineWidth',1);
+title('Standard Deviation of PSD Estimate Zoomed-In')
+xlabel('Frequency/Hz')
+ylabel('Standard Deviation')
+axis([0.05 0.15 -inf inf])

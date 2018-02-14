@@ -69,13 +69,13 @@ figure(3)
 % Plot Biased ACF
 subplot(2,1,1)
 stem(tau,x_2_bacf);
-title('Biased ACF')
+title('Biased ACF of Noisy Sine Wave')
 xlabel('Lags')
 ylabel('Autocorrelation')
 % Plot Unbiased ACF
 subplot(2,1,2)
 stem(tau,x_2_uacf);
-title('Unbiased ACF')
+title('Unbiased ACF of Noisy Sine Wave')
 xlabel('Lags')
 ylabel('Autocorrelation')
 
@@ -94,12 +94,12 @@ mag_corr_x_2_uacf_hs = mag_corr_x_2_uacf(N:end);
 figure(4)
 subplot(2,1,1)
 plot(f_hs,mag_corr_x_2_bacf_hs);
-title('Biased ACF Correlogram')
+title('Biased ACF Correlogram of Noisy Sine Wave')
 xlabel('Frequency/Hz')
 ylabel('Power')
 subplot(2,1,2)
 plot(f_hs,mag_corr_x_2_uacf_hs);
-title('Unbiased ACF Correlogram')
+title('Unbiased ACF Correlogram of Noisy Sine Wave')
 xlabel('Frequency/Hz')
 ylabel('Power')
 
@@ -120,13 +120,13 @@ figure(5)
 % Plot Biased ACF
 subplot(2,1,1)
 stem(tau,x_3_bacf);
-title('Biased ACF')
+title('Biased ACF of Filtered WGN')
 xlabel('Lags')
 ylabel('Autocorrelation')
 % Plot Unbiased ACF
 subplot(2,1,2)
 stem(tau,x_3_uacf);
-title('Unbiased ACF')
+title('Unbiased ACF of Filtered WGN')
 xlabel('Lags')
 ylabel('Autocorrelation')
 
@@ -145,11 +145,11 @@ mag_corr_x_3_uacf_hs = mag_corr_x_3_uacf(N:end);
 figure(6)
 subplot(2,1,1)
 plot(f_hs,mag_corr_x_3_bacf_hs);
-title('Biased ACF Correlogram')
+title('Biased ACF Correlogram of Filtered WGN')
 xlabel('Frequency/Hz')
 ylabel('Power')
 subplot(2,1,2)
 plot(f_hs,mag_corr_x_3_uacf_hs);
-title('Unbiased ACF Correlogram')
+title('Unbiased ACF Correlogram of Filtered WGN')
 xlabel('Frequency/Hz')
 ylabel('Power')
