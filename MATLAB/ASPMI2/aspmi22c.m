@@ -1,5 +1,5 @@
 % ASPMI Exercise 2.2b
-% Generate 1000 samples of data in MATLAB, according to an AR(4) equation
+% Generate 10000 samples of data in MATLAB, according to an AR(4) equation
 % x[n] where w ~ N (0, 1) and discard the first 500 samples (x=x(500:end))
 % to remove the transient output of the filter. Estimate the power spectrum
 % density of the signal using varying model orders p = 2, ..., 14 and 
@@ -8,7 +8,7 @@
 % Note that the denominator coefficients d are different from the 
 % parameters a as defined in the problem
 
-N = 1000;
+N = 10000;
 n = 1:N;
 w = randn(N,1); % Generate 1000 points of WGN
 % Filter noise with AR(4) coefficients
@@ -48,7 +48,7 @@ plot(2:14,mse);
 p = 4;
 [sigma2,a_hat] = estimate_allpole_param(x,p);
 P = zeros(N/2,1);
-d_hat = [1 -1.*a_hat.'];
+d_hat = [1 a_hat.'];
 for i = 1:N/2
     P(i) = PSD_allpole(sigma2,w(i),d_hat);
 end
