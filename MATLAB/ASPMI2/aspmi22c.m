@@ -1,4 +1,4 @@
-% ASPMI Exercise 2.2b
+% ASPMI Exercise 2.2c
 % Generate 10000 samples of data in MATLAB, according to an AR(4) equation
 % x[n] where w ~ N (0, 1) and discard the first 500 samples (x=x(500:end))
 % to remove the transient output of the filter. Estimate the power spectrum
