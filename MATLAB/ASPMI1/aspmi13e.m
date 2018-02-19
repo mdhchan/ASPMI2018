@@ -1,83 +1,20 @@
-% ASPMI Part 1.3c
-% Make bartlett-windowed periodogram of x[n] with varying a2
-f0=0.2;
-a1 = 1;
-
+% ASPMI Part 1.3e
+% Plot amplitude of the Fourier transform of the Bartlett window
 phi1 = 0;
 phi2 = 0;
 N = 256;
 win = bartlett(N);
+% Find amplitude of the Fourier Transform
+fft_win = fftshift(fft(win));
+amp_win = abs(fft_win);
+amp_win = amp_win+10e-13;
+amp_win_dB = 20*log10(amp_win);% Convert to dB
 
-n = 0:N-1;
-w = 0; % 0 variance
-
-% Find periodograms for alpha=4
-alpha = 4;
-
-% Find periodogram for a2=1
-a2 = 1;
-x = a1*sin(f0*2*pi*n+phi1)+a2*sin((f0+alpha/N)*2*pi*n+phi2)+w;
-
+% Plot amplitude of Fourier Transform
+f = -0.5*N:0.5*N-1;
 figure(1)
-subplot(2,2,1)
-periodogram(x,win);
-title('Periodogram PSD estimate for a_2=1')
-
-% Find periodogram for a2=0.1
-a2 = 0.1;
-x = a1*sin(f0*2*pi*n+phi1)+a2*sin((f0+alpha/N)*2*pi*n+phi2)+w;
-figure(1)
-subplot(2,2,2)
-periodogram(x,win);
-title('Periodogram PSD estimate for a_2=0.1')
-
-% Find periodogram for a2=0.01
-a2 = 0.01;
-x = a1*sin(f0*2*pi*n+phi1)+a2*sin((f0+alpha/N)*2*pi*n+phi2)+w;
-figure(1)
-subplot(2,2,3)
-periodogram(x,win);
-title('Periodogram PSD estimate for a_2=0.01')
-
-% Find periodogram for a2=0.001
-a2 = 0.001;
-x = a1*sin(f0*2*pi*n+phi1)+a2*sin((f0+alpha/N)*2*pi*n+phi2)+w;
-figure(1)
-subplot(2,2,4)
-periodogram(x,win);
-title('Periodogram PSD estimate for a_2=0.001')
-
-% Find periodograms for alpha=12
-alpha = 12;
-
-% Find periodogram for a2=1
-a2 = 1;
-x = a1*sin(f0*2*pi*n+phi1)+a2*sin((f0+alpha/N)*2*pi*n+phi2)+w;
-figure(2)
-subplot(2,2,1)
-periodogram(x,win);
-title('Periodogram PSD estimate for a_2=1')
-
-% Find periodogram for a2=0.1
-a2 = 0.1;
-x = a1*sin(f0*2*pi*n+phi1)+a2*sin((f0+alpha/N)*2*pi*n+phi2)+w;
-figure(2)
-subplot(2,2,2)
-periodogram(x,win);
-title('Periodogram PSD estimate for a_2=0.1')
-
-% Find periodogram for a2=0.01
-a2 = 0.01;
-x = a1*sin(f0*2*pi*n+phi1)+a2*sin((f0+alpha/N)*2*pi*n+phi2)+w;
-figure(2)
-subplot(2,2,3)
-periodogram(x,win);
-title('Periodogram PSD estimate for a_2=0.01')
-
-% Find periodogram for a2=0.001
-a2 = 0.001;
-x = a1*sin(f0*2*pi*n+phi1)+a2*sin((f0+alpha/N)*2*pi*n+phi2)+w;
-figure(2)
-subplot(2,2,4)
-periodogram(x,win);
-title('Periodogram PSD estimate for a_2=0.001')
+plot(f,amp_win_dB);
+title('Amplitude of the Fourier Transform of the Bartlett Window in dB')
+ylabel('Amplitude/dB')
+xlabel('Normalised Frequency\timesN/Hz')
+axis([0 20 -inf inf])
