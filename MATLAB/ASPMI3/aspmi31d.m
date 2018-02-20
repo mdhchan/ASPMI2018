@@ -51,9 +51,10 @@ a2_2_avg = mean(a2_mat_2,2);
 % Time average over steady state
 % Steady state is around 400 steps for both - cut off first 400 steps and
 % average over time
-% Find steady state averages for mu = 0.05
+% Find steady state averages for mu=0.05
 a1_1_ss = mean(a1_1_avg(401:end),1);
 a2_1_ss = mean(a2_1_avg(401:end),1);
+% Find steady state averages for mu=0.01
 a1_2_ss = mean(a1_2_avg(401:end),1);
 a2_2_ss = mean(a2_2_avg(401:end),1);
 
