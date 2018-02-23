@@ -1,6 +1,6 @@
-% ASPMI Exercise 3.1f
-% Implement the leaky LMS algorithm (with different values for gamma and mu
-% to estimate the AR coefficients of the signal given in Part a).
+% ASPMI Exercise 3.2a
+% Implement the three GASS algorithms and compare their performance 
+% when identifying a real-valued MA(1) system.
 
 N=1000;
 b1 = 0.9;
@@ -17,6 +17,7 @@ mu = 0.01;
 order = 1;
 % Use regular LMS
 [~,~,w_lms] = ma_lms(x,wgn,mu,order);
+% Use GASS algorithms
 [~,~,w_ben] = ma_lms_gass(x,wgn,mu,order,'Benveniste');
 [~,~,w_ang] = ma_lms_gass(x,wgn,mu,order,'Ang_Farhang');
 [~,~,w_matt] = ma_lms_gass(x,wgn,mu,order,'Matthews_Xie');

@@ -9,7 +9,7 @@ function [ xhat,e,amat] = ar_lms(x,mu,order)
     amat = a;
     
     % Calculate xhat for n=1 to N
-    % Implement IIR filter/AR process
+    % Implement FIR filter for AR process
     % Find error and adapt weights
     x_vec = zeros(order,1); % Initialise vector of past x values
     for n =1:N
