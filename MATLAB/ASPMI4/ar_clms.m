@@ -20,7 +20,7 @@ function [ xhat,e,amat] = ar_clms(x,mu,order)
                 x_vec(m) = x(n-m);
             end
         end
-        xhat(n) = h'*x_vec; % Use IIR filter;
+        xhat(n) = h'*x_vec; % Use FIR filter;
         e(n) = x(n) - xhat(n); % Find error
         h = h + mu*e(n)'*x_vec; % Adapt filter coefficients using error and mu
         amat = [amat h];

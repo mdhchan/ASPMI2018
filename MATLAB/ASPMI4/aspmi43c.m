@@ -1,8 +1,8 @@
-% ASPMI Exercise 4.2a
-% Generate the frequency modulated (FM) signal y(n) =
-% exp(j(2*pi*phi(n)/fs))+ eta(n).  Use the aryule function find the AR(1)
-% coefficient for the complete signal of length 1500, then plot the power
-% spectrum of the signal.
+% ASPMI Exercise 4.3c
+% Implement the DFT-CLMS algorithm given in (54) for the frequency 
+% modulated signal from Part 4.2 a). Plot the magnitude of the weight
+% vector w(n) at every time instant to create a time-frequency diagram
+% as in Part 4.2 b).
 
 % Generate FM signal
 N = 1500;
@@ -37,15 +37,20 @@ eta = sqrt(0.05/2)*(randn(N,1)+1i*randn(N,1));
 % Generate y
 y = exp(1i.*2.*pi.*phi/fs) + eta;
 
-% Find AR coefficient using aryule
-order = 1;
-a = aryule(y,1);
-% Plot power spectrum of the signal
-[h,w] = freqz(1,a,N);
-f = w*fs/(2*pi);
+% Use DFT-CLMS algorithm
+bins = 1024;
+mu = 0.01;
+[ yhat,e,wmat] = dft_clms(y,mu,bins);
+wmat = wmat(:,2:end);
+H = abs(wmat);
+
+% Plot time-frequency diagram
 figure(2)
-plot(f,h)
-title('Power Spectrum of FM signal Using Whole Signal')
-xlabel('Frequency')
-ylabel('Power')
-grid on;
+title('Time-frequency plot of FM Signal')
+n= 1:1500;
+f = 0:fs/bins:fs-fs/bins;
+mesh(n,f,H)
+xlabel('Step Size n')
+ylabel('Frequency')
+axis([0 1500 0 500 -inf inf])
+view(2)
