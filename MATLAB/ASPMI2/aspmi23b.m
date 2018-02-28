@@ -1,6 +1,6 @@
 % ASPMI Exercise 2.3b
-% Using only the r most signi?cant principal components (as determined by 
-% the identi?ed rank), create a low-rank approximation of Xnoise, denoted 
+% Using only the r most significant principal components (as determined by 
+% the identified rank), create a low-rank approximation of Xnoise, denoted 
 % by Xnoise_tilde. Compare the difference (error) between the variables 
 % (columns) of the noiseless input matrix, X, and those in the noise 
 % corrupted matrix Xnoise and denoised matrix Xnoise_tilde.
