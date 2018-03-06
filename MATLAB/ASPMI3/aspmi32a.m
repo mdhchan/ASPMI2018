@@ -28,6 +28,11 @@ w_tilde_ben = b1 - w_ben;
 w_tilde_ang = b1 - w_ang;
 w_tilde_matt = b1 - w_matt;
 
+w_tilde_lms_db = 10*log10(w_tilde_lms.^2+10e-32);
+w_tilde_ben_db = 10*log10(w_tilde_ben.^2+10e-32);
+w_tilde_ang_db = 10*log10(w_tilde_ang.^2+10e-32);
+w_tilde_matt_db = 10*log10(w_tilde_matt.^2+10e-32);
+
 % Plot weight error curves for mu=0.01
 figure(1)
 hold on;
@@ -35,10 +40,11 @@ plot(w_tilde_lms,'c')
 plot(w_tilde_ben,'b')
 plot(w_tilde_ang,'k')
 plot(w_tilde_matt,'r')
-axis([0 200 -inf inf])
+% axis([0 200 -inf inf])
 title('Weight Error Curves for \mu=0.01')
 xlabel('Steps')
 ylabel('Weight Error')
+legend('LMS','Benveniste','Ang Farhang','Matthews Xie')
 
 % Set mu to 0.1
 mu = 0.1;
@@ -55,6 +61,11 @@ w_tilde_ben_2 = b1 - w_ben_2;
 w_tilde_ang_2 = b1 - w_ang_2;
 w_tilde_matt_2 = b1 - w_matt_2;
 
+w_tilde_lms_2_db = 10*log10(w_tilde_lms_2.^2);
+w_tilde_ben_2_db = 10*log10(w_tilde_ben_2.^2);
+w_tilde_ang_2_db = 10*log10(w_tilde_ang_2.^2);
+w_tilde_matt_2_db = 10*log10(w_tilde_matt_2.^2);
+
 % Plot weight error curves for mu=0.1
 figure(2)
 hold on;
@@ -66,3 +77,4 @@ axis([0 200 -inf inf])
 title('Weight Error Curves for \mu=0.1')
 xlabel('Steps')
 ylabel('Weight Error')
+legend('LMS','Benveniste','Ang Farhang','Matthews Xie')

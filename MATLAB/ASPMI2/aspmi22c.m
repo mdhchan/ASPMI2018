@@ -62,8 +62,8 @@ title(['Comparison of True and Estimated PSDs of Filtered Noise for ', ...
         'p = ', num2str(p)])
 legend('Estimated PSD','True PSD')
 
-% Find estimated PSD for p = 7
-p = 7;
+% Find estimated PSD for p = 2
+p = 2;
 [sigma2,a_hat] = estimate_allpole_param(x,p);
 P = zeros(N/2,1);
 d_hat = [1 a_hat.'];

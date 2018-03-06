@@ -14,7 +14,7 @@ r = 3; % Rank
 % Approximate S_X
 U_noise_tilde = U_noise(:,1:r); % Take r columns
 S_noise_tilde = S_noise(1:r,1:r); % Take rxr matrix
-V_noise_tilde = V_noise(:,1:3); % Take r columns
+V_noise_tilde = V_noise(:,1:r); % Take r columns
 Xnoise_tilde = U_noise_tilde*S_noise_tilde*V_noise_tilde.';
 
 % Find squared error between X and Xnoise and Xnoise_tilde
@@ -31,6 +31,6 @@ xlabel('Column')
 % Plot squared error of X and Xnoise_tilde
 subplot(2,1,2)
 stem(Xnoise_tilde_se);
-title('Squared Error of X and Xnoise PCR Estimate')
+title('Squared Error of X and Low Rank Approximation of Xnoise')
 ylabel('Squared Error')
 xlabel('Column')
