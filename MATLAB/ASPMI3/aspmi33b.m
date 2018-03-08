@@ -20,10 +20,14 @@ eta = filter(b,a,wgn);
 s = x + eta;
 
 % Filter 
-order = 20;
-mu = 0.001;
+order = 5;
+mu = 0.01;
 delta = 5;
 [ xhat,e,amat] = ale_lms(s,mu,order,delta);
+
+% Find MSPE of filter
+MSPE_ale = mspe(x,xhat);
+disp(MSPE_ale);
 
 figure(1)
 hold on;

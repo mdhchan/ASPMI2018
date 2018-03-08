@@ -17,9 +17,13 @@ s = x + eta;
 epsilon = eta;
 
 % Filter 
-order = 20;
+order = 5;
 mu = 0.01;
 [ eta_hat,xhat,amat] = anc_lms(s,mu,order,epsilon);
+
+% Find MSPE of filter
+MSPE_anc = mspe(x,xhat);
+disp(MSPE_anc);
 
 figure(1)
 hold on;
