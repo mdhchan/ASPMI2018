@@ -38,11 +38,14 @@ for j = 2:14
     for i = 1:N/2
         P(i) = PSD_allpole(sigma2,w(i),d_hat);
     end
-    mse(j-1) = (sum(P-PSD_true)).^2;
+    mse(j-1) = mean((P-PSD_true).^2);
 end
 
 figure(4)
-plot(2:14,mse);
+plot(2:14,10*log10(mse));
+title('Mean Squared Error against Model Order')
+ylabel('Mean Squared Error/dB')
+xlabel('Model Order');
 
 % Find estimated PSD for p = 4
 p = 4;

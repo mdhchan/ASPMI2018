@@ -28,7 +28,7 @@ PSD_dB = 10*log10(PSD_true);
 % ylabel('Power/dB');
 % title('True PSD of Filtered Noise')
 
-% To assess "best" model order, use mean-squared error
+% To assess "best" model order, use mean squared error
 mse = zeros(length(2:14),1);
 for j = 2:14
     p = j;
@@ -38,11 +38,14 @@ for j = 2:14
     for i = 1:N/2
         P(i) = PSD_allpole(sigma2,w(i),d_hat);
     end
-    mse(j-1) = (sum(P-PSD_true)).^2;
+    mse(j-1) = mean((P-PSD_true).^2);
 end
 
 figure(4)
-plot(2:14,mse);
+plot(2:14,10*log10(mse));
+title('Mean Squared Error against Model Order')
+ylabel('Mean Squared Error/dB')
+xlabel('Model Order');
 
 % Find estimated PSD for p = 4
 p = 4;
@@ -62,8 +65,8 @@ title(['Comparison of True and Estimated PSDs of Filtered Noise for ', ...
         'p = ', num2str(p)])
 legend('Estimated PSD','True PSD')
 
-% Find estimated PSD for p = 7
-p = 7;
+% Find estimated PSD for p = 8
+p = 8;
 [sigma2,a_hat] = estimate_allpole_param(x,p);
 P = zeros(N/2,1);
 d_hat = [1 a_hat.'];
