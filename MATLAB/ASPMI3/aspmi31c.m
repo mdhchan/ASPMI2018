@@ -57,9 +57,13 @@ MA_2_hat = EMSE_2_hat/0.25;
 
 % Display both Misadjustment estimates and theoretical Misadjustment
 % Find trace of autocorrelation matrix
-z = autocorr(x);
-Rxx = toeplitz(z);
-tr_x = trace(Rxx);
+% Find r_0 and r_1
+sigma2 = 0.25;
+r_0 = sigma2;
+r_1 = sigma2*a1/(1-a2);
+% Find R
+R = [r_0 r_1; r_1 r_0];
+tr_x = trace(R);
 % Find theoretical misadjustment
 MA_1 = 0.05*tr_x/2;
 MA_2 = 0.01*tr_x/2;

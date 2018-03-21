@@ -1,6 +1,6 @@
 % Calculates ACLMS estimate for AR coefficients
 % Returns xhat, error and weights given x,mu and order input
-function [ xhat,e,amat] = ma_aclms(x,mu,order)
+function [ xhat,e,amat] = ar_aclms(x,mu,order)
     % Initialise weights with zero coefficients
     h = zeros(order,1);
     N = length(x); % Find the length of x

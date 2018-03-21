@@ -29,7 +29,10 @@ figure(1)
 hold on;
 plot(s);
 plot(xhat);
-legend('Noisy Signal','ANC filtered signal');
+xlabel('Steps')
+ylabel('Amplitude')
+title('Overlay of Noisy and Filtered Signal')
+legend('Noisy Signal','ANC Filtered Signal');
 
 figure(2)
 subplot(2,1,1)
@@ -43,4 +46,7 @@ se0 = (s-x).^2;
 hold on;
 plot(10*log10(se));
 plot(10*log10(se0));
+xlabel('Steps')
+ylabel('Squared Error/dB')
+title('Overlay of Squared-Error of Noisy and Filtered Signal')
 legend('Squared Error of ANC-filtered signal','Squared Error of Noisy Signal');

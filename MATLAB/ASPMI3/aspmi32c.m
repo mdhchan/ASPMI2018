@@ -55,15 +55,15 @@ w_tilde_lms = b1 - w_lms;
 w_tilde_ben = b1 - w_ben;
 w_tilde_gngd = b1 - w_gngd;
 
-% Plot weight error curves for mu=0.01
+% Plot weight error curves for mu=1.1
 figure(2)
 hold on;
-plot(w_tilde_lms,'c')
+%plot(w_tilde_lms,'c')
 plot(w_tilde_ben,'b')
 plot(w_tilde_gngd,'k')
-axis([0 200 -inf inf])
+axis([0 50 -inf inf])
 title('Weight Error Curves for \mu=1.1')
 xlabel('Steps')
 ylabel('Weight Error')
-legend('LMS','GASS Benveniste','GNGD')
+legend('GASS Benveniste','GNGD')
 

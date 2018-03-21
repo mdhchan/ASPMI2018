@@ -15,26 +15,44 @@ x = 1/sqrt(2)*(randn(N,1)+1i*randn(N,1));
 % Lag by 1
 x_m1 = zeros(N,1);
 x_m1(2:end) = x(1:end-1);
-% Lag by 2
-x_m2 = zeros(N,1);
-x_m2(3:end) = x(1:end-2);
 % Add weighted sum
 b1 = 1.5 + 1i;
 b2 = 2.5 - 0.5*1i;
-y = x + b1*x_m1 + b2*conj(x_m2);
-% y = x + b1*x_m1;
+y = x + b1*x_m1 + b2*conj(x_m1);
 
 % Implement CLMS and ACLMS algorithms
-mu = 0.001;
-order = 1;
-[ yhat_clms,e_clms,bmat] = ma_clms(x,mu,order,y);
-order = 1;
-[ yhat_aclms,e_aclms,hmat,gmat] = ma_aclms(x,mu,order,y);
+mu = 0.01;
+% Plot 100 realisations and average
+M = 100;
+e_clms_mat = zeros(N,M);
+e_aclms_mat = zeros(N,M);
+for i=1:M
+    order = 1;
+    [ yhat_clms,e_clms_re,bmat] = ma_clms(x,mu,order,y);
+    order = 1;
+    [ yhat_aclms,e_aclms_re,hmat,gmat] = ma_aclms(x,mu,order,y);
+    e_clms_mat(:,i) = e_clms_re;
+    e_aclms_mat(:,i) = e_aclms_re;
+end
+e_clms = mean(e_clms_mat,2);
+e_aclms = mean(e_aclms_mat,2);
 
 % Plot error
 e_clms_db = 10*log10(abs(e_clms).^2);
 e_aclms_db = 10*log10(abs(e_aclms).^2);
 figure(1)
-hold on;
 plot(e_clms_db);
+figure(2)
 plot(e_aclms_db);
+
+% Plot coefficients
+figure(3)
+subplot(2,1,1)
+plot(real(hmat));
+subplot(2,1,2)
+plot(imag(hmat));
+figure(4)
+subplot(2,1,1)
+plot(real(gmat));
+subplot(2,1,2)
+plot(imag(gmat));

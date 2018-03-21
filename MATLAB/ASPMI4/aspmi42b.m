@@ -39,11 +39,11 @@ order = 1;
 mu=0.01;
 % Find estimated AR coefficients
 [yhat,e,amat] = ar_clms(y(n),mu,order);
-a1_hat_vec = amat(2:end);
+a1_hat_vec = conj(amat(2:end));
 for n = 1:N
     % Run complex-valued LMS algorithm to estimate AR coefficient a1(n)
     a1_hat = a1_hat_vec(n);
-    [h ,w]= freqz(1 , [1; a1_hat], 1024); % Compute power spectrum
+    [h ,w]= freqz(1 , [1; -a1_hat], 1024); % Compute power spectrum
     H(:,n) = abs(h).^2; % Store it in a matrix
 end
 % Remove outliers in the matrix H
