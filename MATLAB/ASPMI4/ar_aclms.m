@@ -1,12 +1,14 @@
 % Calculates ACLMS estimate for AR coefficients
 % Returns xhat, error and weights given x,mu and order input
-function [ xhat,e,amat] = ar_aclms(x,mu,order)
+function [ xhat,e,hmat,gmat ] = ar_aclms(x,mu,order)
     % Initialise weights with zero coefficients
     h = zeros(order,1);
+    g = zeros(order,1);
     N = length(x); % Find the length of x
     xhat = zeros(N,1); % Initialise xhat vector
     e = zeros(N,1); % Initialise e vector
-    amat = h;
+    hmat = h;
+    gmat = g;
     
     % Calculate xhat for n=1 to N
     % Implement FIR filter for AR process
@@ -20,10 +22,12 @@ function [ xhat,e,amat] = ar_aclms(x,mu,order)
                 x_vec(m) = x(n-m);
             end
         end
-        xhat(n) = h'*x_vec; % Use FIR filter;
+        xhat(n) = h'*x_vec + g'*conj(x_vec); % Use FIR filter
         e(n) = x(n) - xhat(n); % Find error
         h = h + mu*e(n)'*x_vec; % Adapt filter coefficients using error and mu
-        amat = [amat h];
+        g = g + mu*e(n)'*conj(x_vec);
+        hmat = [hmat h];
+        gmat = [gmat g];
     end
 end
 
