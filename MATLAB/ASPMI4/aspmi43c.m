@@ -9,14 +9,14 @@ N = 1500;
 fs = 1000; % 1kHz sampling frequency
 % Generate f
 f = zeros(N,1);
-f(1:500) = 100; % 1 < n < 500
+f(1:500) = 100; % 1 ? n ? 500
 % 501 <= n <= 1000
 for n = 501:1000
-    f(501:1000) = 100 + (n-500)/2;
+    f(n) = 100 + (n-500)/2;
 end
 % 1001 <= n <= 1500
-for n = 501:1000
-    f(1001:1500) = 100 + ((n-1000)/25)^2;
+for n = 1001:1500
+    f(n) = 100 + ((n-1000)/25)^2;
 end
 
 % Plot frequency variation
@@ -39,7 +39,7 @@ y = exp(1i.*2.*pi.*phi/fs) + eta;
 
 % Use DFT-CLMS algorithm
 bins = 1024;
-mu = 0.01;
+mu = 0.001;
 [ yhat,e,wmat] = dft_clms(y,mu,bins);
 wmat = wmat(:,2:end);
 H = abs(wmat);

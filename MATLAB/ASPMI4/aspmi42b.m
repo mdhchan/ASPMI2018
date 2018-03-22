@@ -9,11 +9,11 @@ f = zeros(N,1);
 f(1:500) = 100; % 1 ? n ? 500
 % 501 <= n <= 1000
 for n = 501:1000
-    f(501:1000) = 100 + (n-500)/2;
+    f(n) = 100 + (n-500)/2;
 end
 % 1001 <= n <= 1500
-for n = 501:1000
-    f(1001:1500) = 100 + ((n-1000)/25)^2;
+for n = 1001:1500
+    f(n) = 100 + ((n-1000)/25)^2;
 end
 
 % Plot frequency variation
@@ -23,7 +23,7 @@ plot(n,f)
 title('Frequency Variation of FM signal')
 xlabel('Step Size n')
 ylabel('Frequency')
-axis([0 1500 0 400])
+% axis([0 1500 0 400])
 grid on;
 
 % Generate phi

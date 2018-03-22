@@ -14,12 +14,13 @@ b = [1 0 0.5];
 a = 1;
 eta = filter(b,a,wgn);
 s = x + eta;
-epsilon = eta;
+% epsilon = randn(N,1);
 
 % Filter 
 order = 5;
 mu = 0.01;
-[ eta_hat,xhat,amat] = anc_lms(s,mu,order,epsilon);
+% [ eta_hat,xhat,amat] = general_lms(s,mu,order,epsilon);
+[ ~,xhat,bmat] = general_lms(s,wgn,mu,order);
 
 % Find MSPE of filter
 MSPE_anc = mspe(x,xhat);
