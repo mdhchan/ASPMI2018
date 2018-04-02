@@ -63,12 +63,13 @@ order = 1;
 
 % Estimate balanced voltage
 % Use CLMS
-mu = 0.01;
+mu = 1e-7;
 [~,e_clms_balanced,clms_hmat] = ar_clms(v_balanced,mu,order);
-f_balanced_estimate_clms = fs*atan(imag(clms_hmat)./real(clms_hmat))./(2*pi);
+f_balanced_estimate_clms = fs*atan(-imag(clms_hmat)./real(clms_hmat))./(2*pi);
 f_balanced_estimate_clms = real(f_balanced_estimate_clms);
 figure(1)
-plot(f_balanced_estimate_clms);
+hold on;
+plot(f_balanced_estimate_clms,'b');
 
 % Use ACLMS
 mu = 1e-5;
@@ -77,17 +78,22 @@ f_balanced_estimate_aclms = fs*...
     atan(sqrt(imag(aclms_hmat).^2-abs(aclms_gmat).^2)./real(aclms_hmat))./...
     (2*pi);
 f_balanced_estimate_aclms = real(f_balanced_estimate_aclms);
-figure(2)
-plot(real(f_balanced_estimate_aclms));
+figure(1)
+plot(real(f_balanced_estimate_aclms),'r');
+title('Frequency Estimate of Balanced Voltage')
+xlabel('Time Sample')
+ylabel('Frequency/Hz')
+legend('CLMS','ACLMS');
 
 % Estimate unbalanced voltage
 % Use CLMS
-mu = 0.01;
+mu = 1e-7;
 [~,e_clms_unbalanced,clms_hmat] = ar_clms(v_unbalanced,mu,order);
-f_unbalanced_estimate_clms = fs*atan(imag(clms_hmat)./real(clms_hmat))./(2*pi);
+f_unbalanced_estimate_clms = fs*atan(-imag(clms_hmat)./real(clms_hmat))./(2*pi);
 f_unbalanced_estimate_clms = real(f_unbalanced_estimate_clms);
-figure(3)
-plot(f_unbalanced_estimate_clms);
+figure(2)
+hold on;
+plot(f_unbalanced_estimate_clms,'b');
 
 % Use ACLMS
 mu = 1e-5;
@@ -96,5 +102,9 @@ f_unbalanced_estimate_aclms = fs*...
     atan(sqrt(imag(aclms_hmat).^2-abs(aclms_gmat).^2)./real(aclms_hmat))./...
     (2*pi);
 f_unbalanced_estimate_aclms = real(f_unbalanced_estimate_aclms);
-figure(4)
-plot(f_unbalanced_estimate_aclms);
+figure(2)
+plot(f_unbalanced_estimate_aclms,'r');
+title('Frequency Estimate of Unbalanced Voltage')
+xlabel('Time Sample')
+ylabel('Frequency/Hz')
+legend('CLMS','ACLMS');

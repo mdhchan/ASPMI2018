@@ -11,19 +11,23 @@
 % on which algorithm (CLMS or ACLMS) performs better for the different 
 % wind regimes.
 
+% Use 1 step ahead prediction
+mu = 0.002;
+delay = 1;
+
 % Work with high wind regime
 load ../wind-dataset/high-wind.mat;
+% Find circularity coefficient
+v = v_east+1i*v_north;
+rho = abs(v.'*v)/(v'*v);
 % Plot circularity diagram
 figure(1)
 scatter(v_east,v_north);
-title('Circularity diagram of high wind regime')
+title(['Circularity diagram of high wind regime, \rho=' num2str(rho)])
 xlabel('v_{east}')
 ylabel('v_{north}')
-v = v_east+1i*v_north;
+axis([-4 4 -4 4])
 
-% Use 1 step ahead prediction
-mu = 0.001;
-delay = 1;
 % Vary order
 M = 20;
 mse_clms_high_db = zeros(M,1);
@@ -31,31 +35,34 @@ mse_aclms_high_db = zeros(M,1);
 for order=1:M
     [ v_clms_high,e_clms_high,~] = ar_prediction_clms(v,mu,order,delay);
     [ v_aclms_high,e_aclms_high,~,~] = ar_prediction_aclms(v,mu,order,delay);
-    mse_clms_high = mean(e_clms_high);
-    mse_aclms_high = mean(e_aclms_high);
-    mse_clms_high_db(order) = 10*log(abs(mse_clms_high).^2);
-    mse_aclms_high_db(order) = 10*log(abs(mse_aclms_high).^2);
+    mse_clms_high = mean(abs(e_clms_high).^2);
+    mse_aclms_high = mean(abs(e_aclms_high).^2);
+    mse_clms_high_db(order) = 10*log(mse_clms_high);
+    mse_aclms_high_db(order) = 10*log(mse_aclms_high);
 end
 
 figure(2)
 hold on;
 plot(mse_clms_high_db,'b')
 plot(mse_aclms_high_db,'r')
+title('Plot of MSE for High Wind Regime in dB Against Filter Order')
+xlabel('Filter Order')
+ylabel('MSE/dB')
 legend('CLMS','ACLMS')
 
 % Work with medium wind regime
 load ../wind-dataset/medium-wind.mat;
+% Find circularity coefficient
+v = v_east+1i*v_north;
+rho = abs(v.'*v)/(v'*v);
 % Plot circularity diagram
 figure(3)
 scatter(v_east,v_north);
-title('Circularity diagram of medium wind regime')
+title(['Circularity diagram of medium wind regime, \rho=' num2str(rho)])
 xlabel('v_{east}')
 ylabel('v_{north}')
-v = v_east+1i*v_north;
+axis([-2 2 -2 2])
 
-% Use 1 step ahead prediction
-mu = 0.001;
-delay = 1;
 % Vary order
 M = 20;
 mse_clms_medium_db = zeros(M,1);
@@ -63,30 +70,33 @@ mse_aclms_medium_db = zeros(M,1);
 for order=1:M
     [ v_clms_medium,e_clms_medium,~] = ar_prediction_clms(v,mu,order,delay);
     [ v_aclms_medium,e_aclms_medium,~,~] = ar_prediction_aclms(v,mu,order,delay);
-    mse_clms_medium = mean(e_clms_medium);
-    mse_aclms_medium = mean(e_aclms_medium);
-    mse_clms_medium_db(order) = 10*log(abs(mse_clms_medium).^2);
-    mse_aclms_medium_db(order) = 10*log(abs(mse_aclms_medium).^2);
+    mse_clms_medium = mean(abs(e_clms_medium).^2);
+    mse_aclms_medium = mean(abs(e_aclms_medium).^2);
+    mse_clms_medium_db(order) = 10*log(mse_clms_medium);
+    mse_aclms_medium_db(order) = 10*log(mse_aclms_medium);
 end
 
 figure(4)
 hold on;
 plot(mse_clms_medium_db,'b')
 plot(mse_aclms_medium_db,'r')
+title('Plot of MSE for Medium Wind Regime in dB Against Filter Order')
+xlabel('Filter Order')
+ylabel('MSE/dB')
 legend('CLMS','ACLMS')
 
 load ../wind-dataset/low-wind.mat;
+% Find circularity coefficient
+v = v_east+1i*v_north;
+rho = abs(v.'*v)/(v'*v);
 % Plot circularity diagram
 figure(5)
 scatter(v_east,v_north);
-title('Circularity diagram of low wind regime')
+title(['Circularity diagram of low wind regime, \rho=' num2str(rho)])
 xlabel('v_{east}')
 ylabel('v_{north}')
-v = v_east+1i*v_north;
+axis([-0.4 0.4 -0.4 0.4])
 
-% Use 1 step ahead prediction
-mu = 0.001;
-delay = 1;
 % Vary order
 M = 20;
 mse_clms_low_db = zeros(M,1);
@@ -94,16 +104,19 @@ mse_aclms_low_db = zeros(M,1);
 for order=1:M
     [ v_clms_low,e_clms_low,~] = ar_prediction_clms(v,mu,order,delay);
     [ v_aclms_low,e_aclms_low,~,~] = ar_prediction_aclms(v,mu,order,delay);
-    mse_clms_low = mean(e_clms_low);
-    mse_aclms_low = mean(e_aclms_low);
-    mse_clms_low_db(order) = 10*log(abs(mse_clms_low).^2);
-    mse_aclms_low_db(order) = 10*log(abs(mse_aclms_low).^2);
+    mse_clms_low = mean(abs(e_clms_low).^2);
+    mse_aclms_low = mean(abs(e_aclms_low).^2);
+    mse_clms_low_db(order) = 10*log(mse_clms_low);
+    mse_aclms_low_db(order) = 10*log(mse_aclms_low);
 end
 
 figure(6)
 hold on;
 plot(mse_clms_low_db,'b')
 plot(mse_aclms_low_db,'r')
+title('Plot of MSE for Low Wind Regime in dB Against Filter Order')
+xlabel('Filter Order')
+ylabel('MSE/dB')
 legend('CLMS','ACLMS')
 
 figure(7)

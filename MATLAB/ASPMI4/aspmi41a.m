@@ -41,17 +41,21 @@ e_aclms = mean(e_aclms_mat,2);
 e_clms_db = 10*log10(abs(e_clms).^2);
 e_aclms_db = 10*log10(abs(e_aclms).^2);
 figure(1)
-plot(e_clms_db);
-figure(2)
-plot(e_aclms_db);
+hold on;
+plot(e_clms_db,'b');
+plot(e_aclms_db,'r');
+title('ACLMS and CLMS Learning Curve Averaged Across 100 Realisations')
+xlabel('Time Sample')
+ylabel('Error/dB')
+legend('CLMS Learning Curve','ACLMS Learning Curve')
 
 % Plot coefficients
-figure(3)
+figure(2)
 subplot(2,1,1)
 plot(real(hmat));
 subplot(2,1,2)
 plot(imag(hmat));
-figure(4)
+figure(3)
 subplot(2,1,1)
 plot(real(gmat));
 subplot(2,1,2)
