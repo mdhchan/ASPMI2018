@@ -38,8 +38,8 @@ ylabel('Power/dB');
 
 figure(3)
 plot(f_hs,pxx_dB); % Plot logarithmic values
-axis([10 20 -inf inf])
-title('Standard Periodogram of EEG Data in Logarithmic Scale Zoomed To 10-20 Hz');
+axis([10 40 -inf inf])
+title('Standard Periodogram of EEG Data in Logarithmic Scale Zoomed To 10-40 Hz');
 grid on;
 xlabel('Frequency/Hz');
 ylabel('Power/dB');
@@ -76,7 +76,7 @@ figure(4)
 % Plot logarithmic values for window size of 10s
 subplot(3,1,1)
 plot(f_hs,pxx_welch_dB_10); 
-axis([10 20 -inf inf])
+axis([10 40 -inf inf])
 title('Welch Periodogram of EEG Data for 10s Window');
 grid on;
 xlabel('Frequency/Hz');
@@ -86,7 +86,7 @@ ylabel('Power/dB');
 % Plot logarithmic values for window size of 5s
 subplot(3,1,2)
 plot(f_hs,pxx_welch_dB_5); 
-axis([10 20 -inf inf])
+axis([10 40 -inf inf])
 title('Welch Periodogram of EEG Data for 5s Window');
 grid on;
 xlabel('Frequency/Hz');
@@ -95,7 +95,7 @@ ylabel('Power/dB');
 % Plot logarithmic values for window size of 1s
 subplot(3,1,3)
 plot(f_hs,pxx_welch_dB_1); 
-axis([10 20 -inf inf])
+axis([10 40 -inf inf])
 title('Welch Periodogram of EEG Data for 1s Window');
 grid on;
 xlabel('Frequency/Hz');

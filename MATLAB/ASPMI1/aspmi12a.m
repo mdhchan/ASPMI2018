@@ -54,6 +54,12 @@ stem(nf,xf_real_128);
 title('Spectral Estimate of PSD With Removed Imaginary Component for M=128');
 xlabel('Normalised Frequency/Hz');
 ylabel('Power');
+figure(4)
+stem(nf,xf_real_128);
+title('Spectral Estimate of PSD With Removed Imaginary Component for M=128');
+xlabel('Normalised Frequency/Hz');
+ylabel('Power');
+axis([0 0.1 0 140]);
 
 % Part 1.2c
 % Repeat the above but pad zeros at the end and not the middle;
