@@ -24,18 +24,32 @@ end
 xf_10 = fft(x_10);
 xf_128 = fft(x_128);
 
+% Find fft of M=10 without zero padding
+x_10_nz = x_10;
+x_10_nz(11:246)= [];
+nf_10 = 0:1/20:1-1/20; % Normalised frequency
+xf_10_nz = fft(x_10_nz);
+% Remove imaginary part of the spectrum
+xf_real_10_nz = real(xf_10_nz);
+% Plot spectral estimate of xf without zero padding
+figure(1)
+stem(nf_10,xf_real_10_nz);
+title('Spectral Estimate of PSD Without Zero Padding for M=10');
+xlabel('Normalised Frequency/Hz');
+ylabel('Power');
+
 % Part 1.2b
 % Remove imaginary part of the spectrum
 xf_real_10 = real(xf_10);
 xf_real_128 = real(xf_128);
 nf = 0:1/L:1-1/L; % Normalised frequency
 % Plot spectral estimate of xf
-figure(1)
+figure(2)
 stem(nf,xf_real_10);
 title('Spectral Estimate of PSD With Removed Imaginary Component for M=10');
 xlabel('Normalised Frequency/Hz');
 ylabel('Power');
-figure(2)
+figure(3)
 stem(nf,xf_real_128);
 title('Spectral Estimate of PSD With Removed Imaginary Component for M=128');
 xlabel('Normalised Frequency/Hz');

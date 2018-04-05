@@ -40,12 +40,32 @@ y = exp(1i.*2.*pi.*phi/fs) + eta;
 % Use DFT-CLMS algorithm
 bins = 1024;
 mu = 0.001;
-[ yhat,e,wmat] = dft_clms(y,mu,bins);
+lambda = 1;
+[~,e_1,wmat] = dft_clms(y,mu,bins,lambda);
 wmat = wmat(:,2:end);
 H = abs(wmat);
 
 % Plot time-frequency diagram
 figure(2)
+title('Time-frequency plot of FM Signal')
+n= 1:1500;
+f = 0:fs/bins:fs-fs/bins;
+mesh(n,f,H)
+xlabel('Step Size n')
+ylabel('Frequency')
+axis([0 1500 0 500 -inf inf])
+view(2)
+
+% Use DFT-CLMS algorithm with forgetting factor
+bins = 1024;
+mu = 0.001;
+lambda = 0.98;
+[~,e_2,wmat] = dft_clms(y,mu,bins,lambda);
+wmat = wmat(:,2:end);
+H = abs(wmat);
+
+% Plot time-frequency diagram
+figure(3)
 title('Time-frequency plot of FM Signal')
 n= 1:1500;
 f = 0:fs/bins:fs-fs/bins;

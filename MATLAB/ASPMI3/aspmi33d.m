@@ -35,7 +35,8 @@ x = sin(w0*t).';
 % Filter POz
 order = 20;
 mu = 0.01;
-[ eta_hat,POz_filtered,amat] = anc_lms(POz_detrend,mu,order,x);
+[ ~,POz_filtered,~] = general_lms(POz_detrend,x,mu,order);
+% [ eta_hat,POz_filtered,amat] = anc_lms(POz_detrend,mu,order,x);
 
 figure(3)
 spectrogram(POz_filtered,win,[],nfft,fs);
@@ -43,7 +44,8 @@ spectrogram(POz_filtered,win,[],nfft,fs);
 % Filter POz
 order = 10;
 mu = 0.01;
-[ ~,POz_filtered,~] = anc_lms(POz_detrend,mu,order,x);
+[ ~,POz_filtered,~] = general_lms(POz_detrend,x,mu,order);
+% [ ~,POz_filtered,~] = anc_lms(POz_detrend,mu,order,x);
 
 figure(4)
 spectrogram(POz_filtered,win,[],nfft,fs);
@@ -51,7 +53,8 @@ spectrogram(POz_filtered,win,[],nfft,fs);
 % Filter POz
 order = 20;
 mu = 0.1;
-[ ~,POz_filtered,~] = anc_lms(POz_detrend,mu,order,x);
+[ ~,POz_filtered,~] = general_lms(POz_detrend,x,mu,order);
+% [ ~,POz_filtered,~] = anc_lms(POz_detrend,mu,order,x);
 
 figure(5)
 spectrogram(POz_filtered,win,[],nfft,fs);

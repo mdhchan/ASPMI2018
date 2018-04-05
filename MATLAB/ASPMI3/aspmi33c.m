@@ -19,30 +19,33 @@ s = x + eta;
 % Filter 
 order = 5;
 mu = 0.01;
+delta = 5;
 % [ eta_hat,xhat,amat] = general_lms(s,mu,order,epsilon);
-[ ~,xhat,bmat] = general_lms(s,wgn,mu,order);
+[ ~,xhat_anc,bmat] = general_lms(s,wgn,mu,order);
+[ xhat_ale,e,amat] = ale_lms(s,mu,order,delta);
 
 % Find MSPE of filter
-MSPE_anc = mspe(x,xhat);
+MSPE_anc = mspe(x,xhat_anc);
 disp(MSPE_anc);
 
 figure(1)
 hold on;
-plot(s);
-plot(xhat);
+plot(s,'b');
+plot(xhat_anc,'k');
+plot(xhat_ale,'r');
 xlabel('Steps')
 ylabel('Amplitude')
 title('Overlay of Noisy and Filtered Signal')
-legend('Noisy Signal','ANC Filtered Signal');
+legend('Noisy Signal','ANC Filtered Signal','ALE Filtered Signal');
 
 figure(2)
 subplot(2,1,1)
 plot(s);
 subplot(2,1,2)
-plot(xhat);
+plot(xhat_anc);
 
 figure(3)
-se = (xhat - x).^2;
+se = (xhat_anc - x).^2;
 se0 = (s-x).^2;
 hold on;
 plot(10*log10(se));

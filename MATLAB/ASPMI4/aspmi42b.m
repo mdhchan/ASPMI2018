@@ -36,7 +36,7 @@ y = exp(1i.*2.*pi.*phi/fs) + eta;
 
 % Use code to find AR and frequency spectrum
 order = 1;
-mu=0.01;
+mu=0.1;
 % Find estimated AR coefficients
 [yhat,e,amat] = ar_clms(y(n),mu,order);
 a1_hat_vec = conj(amat(2:end));

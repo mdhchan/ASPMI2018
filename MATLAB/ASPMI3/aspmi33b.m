@@ -86,7 +86,22 @@ plot(mspe_order_5,'c');
 plot(mspe_order_10,'m');
 plot(mspe_order_15,'y');
 plot(mspe_order_20,'k');
-title('MSPE of Varying Orders against Delay Delta')
-xlabel('Delay Delta')
+title('MSPE of Varying Orders Against Delay \Delta')
+xlabel('Delay \Delta')
 ylabel('MSPE')
 legend('Order=5','Order=10','Order=15','Order=20')
+
+% Find MSPE of varying orders for delta = 3
+mu = 0.01;
+delta = 3;
+mspe_delta_3 = zeros(20,1);
+for order = 1:20
+    [ xhat,e,amat] = ale_lms(s,mu,order,delta);
+    mspe_delta_3(order)= mspe(x,xhat);
+end
+
+figure(5)
+plot(mspe_delta_3,'b');
+title('MSPE Against Order for Delay \Delta=3');
+xlabel('Order')
+ylabel('MSPE')
