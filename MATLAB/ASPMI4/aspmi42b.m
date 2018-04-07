@@ -58,3 +58,4 @@ mesh(n,f,H)
 view(2)
 xlabel('Step Size n')
 ylabel('Frequency')
+colorbar;

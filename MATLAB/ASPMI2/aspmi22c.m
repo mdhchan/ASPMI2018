@@ -20,13 +20,8 @@ x = x(501:end); % Discard first 500 samples
 
 % Find true PSD
 [h,w] = freqz(b,d,N/2);
-PSD_true = h.^2;
+PSD_true = abs(h).^2;
 PSD_dB = 10*log10(PSD_true);
-% figure(1)
-% plot(w,PSD_dB);
-% xlabel('Angular Frequency/rad/s');
-% ylabel('Power/dB');
-% title('True PSD of Filtered Noise')
 
 % To assess "best" model order, use mean-squared error
 mse = zeros(length(2:14),1);
@@ -40,12 +35,6 @@ for j = 2:14
     end
     mse(j-1) = mean((P-PSD_true).^2);
 end
-
-figure(4)
-plot(2:14,10*log10(mse));
-title('Mean Squared Error against Model Order')
-ylabel('Mean Squared Error/dB')
-xlabel('Model Order');
 
 % Find estimated PSD for p = 4
 p = 4;
@@ -100,3 +89,11 @@ ylabel('Power/dB');
 title(['Comparison of True and Estimated PSDs of Filtered Noise for ', ...
         'p = ', num2str(p)])
 legend('Estimated PSD','True PSD')
+
+% Plot MSE against model order
+figure(4)
+plot(2:14,10*log10(mse));
+title('Mean Squared Error against Model Order')
+ylabel('Mean Squared Error/dB')
+xlabel('Model Order');
+axis([2 14 40 80])

@@ -1,6 +1,5 @@
 % ASPMI Exercise 3.1a
-% What are the entries of the correlation matrix of the input vector 
-% x(n) = [x(n ? 1), x(n ? 2)]T ? (Hint: It will be 2 × 2 matrix.) 
+% What are the entries of the correlation matrix of the input vector x(n)
 % Furthermore, for what range of values of the step size µ will the 
 % LMS converge in the mean?
 

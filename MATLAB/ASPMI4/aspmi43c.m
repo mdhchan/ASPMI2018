@@ -47,14 +47,15 @@ H = abs(wmat);
 
 % Plot time-frequency diagram
 figure(2)
-title('Time-frequency plot of FM Signal')
 n= 1:1500;
 f = 0:fs/bins:fs-fs/bins;
 mesh(n,f,H)
+title('Time-frequency Plot of DFT-CLMS Estimate')
 xlabel('Step Size n')
 ylabel('Frequency')
 axis([0 1500 0 500 -inf inf])
 view(2)
+colorbar;
 
 % Use DFT-CLMS algorithm with forgetting factor
 bins = 1024;
@@ -66,11 +67,12 @@ H = abs(wmat);
 
 % Plot time-frequency diagram
 figure(3)
-title('Time-frequency plot of FM Signal')
 n= 1:1500;
 f = 0:fs/bins:fs-fs/bins;
 mesh(n,f,H)
+title('Time-frequency Plot of DFT-CLMS Estimate With Forgetting Factor')
 xlabel('Step Size n')
 ylabel('Frequency')
 axis([0 1500 0 500 -inf inf])
+colorbar;
 view(2)

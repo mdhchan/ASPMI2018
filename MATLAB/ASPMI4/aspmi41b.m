@@ -110,6 +110,7 @@ for order=1:M
     mse_aclms_low_db(order) = 10*log(mse_aclms_low);
 end
 
+% MSE against order
 figure(6)
 hold on;
 plot(mse_clms_low_db,'b')
@@ -119,6 +120,7 @@ xlabel('Filter Order')
 ylabel('MSE/dB')
 legend('CLMS','ACLMS')
 
+% Plot prediction process for one realisation
 figure(7)
 subplot(2,1,1)
 title('East wind prediction')

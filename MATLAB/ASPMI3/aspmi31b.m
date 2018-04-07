@@ -1,7 +1,7 @@
 % ASPMI Exercise 3.1b
 % Implement an LMS adaptive predictor using N = 1000 samples of x(n) as in
 % a) and plot the squared prediction error e2(n) dB i.e. 10 log(e2(n)) 
-% along time using step sizes  = 0:05 and  = 0:01. Repeat this experiment
+% along time using step sizes mu = 0:05 and mu = 0:01. Repeat this experiment
 % for 100 different realizations of x(n) and plot the learning curve by
 % averaging the plots of 10 log(e2(n)).
 
@@ -26,29 +26,6 @@ order = 2;
 mu = 0.01;
 order = 2;
 [ xhat_2,e_2,amat_2] = ar_lms(x,mu,order);
-
-% % Plot evolution of coefficients for both values of mu
-% figure(1)
-% subplot(2,1,1)
-% hold on;
-% plot(amat_1(1,:),'b');
-% plot(amat_1(2,:),'k');
-% plot(0.8*ones(N,1),'r--');
-% plot(0.1*ones(N,1),'r--');
-% xlabel('Steps');
-% ylabel('Coefficient values');
-% legend('a1','a2');
-% title('LMS Evolution of Coefficients for \mu=0.05')
-% subplot(2,1,2)
-% hold on;
-% plot(amat_2(1,:),'b');
-% plot(amat_2(2,:),'k');
-% plot(0.8*ones(N,1),'r--');
-% plot(0.1*ones(N,1),'r--');
-% xlabel('Steps');
-% ylabel('Coefficient values');
-% title('LMS Evolution of Coefficients for \mu=0.01')
-% legend('a1','a2');
 
 % Calculate squared prediction error in db
 se_db_1 = 10*log10(e_1.^2);% For mu=0.05

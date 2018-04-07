@@ -100,14 +100,3 @@ title('Welch Periodogram of EEG Data for 1s Window');
 grid on;
 xlabel('Frequency/Hz');
 ylabel('Power/dB');
-
-% figure(3)
-% subplot(2,1,1)
-% plot(f_hs,pxx_welch); % Plot absolute values
-% axis([10 20 0 inf])
-% 
-% subplot(2,1,2)
-% pxx_welch = pxx_welch + 10e-13;
-% pxx_welch_dB = 10*log10(pxx_welch);
-% plot(f_hs,pxx_welch_dB); % Plot logarithmic values
-% axis([10 20 -inf inf])

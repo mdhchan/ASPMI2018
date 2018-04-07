@@ -1,4 +1,4 @@
-% Calculates LMS estimate
+% Calculates LMS estimate using general form
 % Returns xhat, error and weights given d,eta,mu and order input
 function [ xhat,e,bmat] = general_lms(d,x,mu,order)
     % Initialise weights with zero coefficients

@@ -5,8 +5,6 @@
 % between the delay delta and the MSPE (i.e. how well the de-noising 
 % algorithm has performed)?
 
-% http://eceweb1.rutgers.edu/~orfanidi/osp2e/osp2e.pdf
-
 N = 1000;
 n = 1:N;
 % Generate unit amplitude sinusoid of w = 0.01 pi

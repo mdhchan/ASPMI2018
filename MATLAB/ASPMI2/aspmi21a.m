@@ -43,15 +43,17 @@ mag_corr_x_1_uacf_hs = mag_corr_x_1_uacf(N:end);
 % Plot correlogram magnitude spectrum of WGN
 figure(2)
 subplot(2,1,1)
-plot(f_hs,mag_corr_x_1_bacf_hs);
+plot(f_hs,10*log(mag_corr_x_1_bacf_hs));
 title('Biased ACF Correlogram of WGN')
 xlabel('Frequency/Hz')
 ylabel('Power')
+axis([0 0.5 0 30])
 subplot(2,1,2)
 plot(f_hs,mag_corr_x_1_uacf_hs);
 title('Unbiased ACF Correlogram of WGN')
 xlabel('Frequency/Hz')
 ylabel('Power')
+axis([0 0.5 0 30])
 
 %%%%%%%%%%%%%%%%%%% Find correlograms of sine wave in WGN %%%%%%%%%%%%%%%%%
 
@@ -97,11 +99,14 @@ plot(f_hs,mag_corr_x_2_bacf_hs);
 title('Biased ACF Correlogram of Noisy Sine Wave')
 xlabel('Frequency/Hz')
 ylabel('Power')
+axis([0 0.5 0 250])
+
 subplot(2,1,2)
 plot(f_hs,mag_corr_x_2_uacf_hs);
 title('Unbiased ACF Correlogram of Noisy Sine Wave')
 xlabel('Frequency/Hz')
 ylabel('Power')
+axis([0 0.5 0 250])
 
 %%%%%%%%%%%%%%%% Find correlograms of WGN filtered by MA(5) filter %%%%%%%%
 
@@ -148,8 +153,11 @@ plot(f_hs,mag_corr_x_3_bacf_hs);
 title('Biased ACF Correlogram of Filtered WGN')
 xlabel('Frequency/Hz')
 ylabel('Power')
+axis([0 0.5 0 250])
+
 subplot(2,1,2)
 plot(f_hs,mag_corr_x_3_uacf_hs);
 title('Unbiased ACF Correlogram of Filtered WGN')
 xlabel('Frequency/Hz')
 ylabel('Power')
+axis([0 0.5 0 250])
